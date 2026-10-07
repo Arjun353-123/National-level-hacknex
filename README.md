@@ -1,192 +1,191 @@
-# Multimodal Medical Image Intelligence Platform
+# 🏥 Multimodal Medical Image Intelligence Platform
 
-An advanced AI-powered medical imaging analysis platform with real-time diagnosis assistance, featuring stunning 3D animations and an intuitive interface.
+> An AI-powered medical imaging analysis platform with **Isolation Forest unsupervised ML**, real-time diagnosis assistance, medicine suggestions, and a stunning 3D animated UI.
+
+[![Next.js](https://img.shields.io/badge/Next.js-14-black?logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?logo=typescript)](https://typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3-38bdf8?logo=tailwindcss)](https://tailwindcss.com/)
+[![ML: Isolation Forest](https://img.shields.io/badge/ML-Isolation%20Forest-9333ea)](https://en.wikipedia.org/wiki/Isolation_forest)
+
+---
 
 ## 🌟 Features
 
-- **PredictiveArcCanvas**: Beautiful violet predictive pixel arch with animated core from ThreeUI
-- **3D Cursor Effects**: Interactive cursor with ring and dot animations
-- **Glowing Button Animations**: Smooth hover effects with glow animations
-- **AI-Powered Analysis**: Simulated medical image analysis with real-time feedback
-- **Patient Dashboard**: Upload and analyze medical images (X-Ray, CT, MRI, Ultrasound)
-- **Admin Dashboard**: Comprehensive patient management and system monitoring
-- **Authentication System**: Role-based login (admin/patient)
-- **Responsive Design**: Beautiful glassmorphism UI that works on all devices
-- **Real-time Chatbot**: AI assistant for medical queries (placeholder)
+| Feature | Description |
+|---------|-------------|
+| 🧠 **Isolation Forest ML** | Unsupervised anomaly detection trained on 180 synthetic clinical cases |
+| 💊 **Medicine Suggestions** | Condition-specific drug protocols with dosage + drug class |
+| 🖼️ **Medical Image Analysis** | Upload X-Ray, CT, MRI, Ultrasound — get instant AI results |
+| 🎨 **PredictiveArcCanvas** | Violet animated 3D arc background (Canvas 2D + WebGL) |
+| 📊 **Analytics Charts** | Real-time Charts.js powered health dashboards |
+| 🤖 **AI Chatbot** | Medical query assistant |
+| 🔐 **Role-based Auth** | Admin and Patient login flows |
+| 🩺 **Admin Dashboard** | Patient management, anomaly monitoring, system health |
+| 👤 **Patient Dashboard** | Image upload, ML scoring, feature deviations, recommendations |
+
+---
 
 ## 🚀 Quick Start
 
 ### Prerequisites
-
-- Node.js 18+ installed
-- npm or yarn package manager
+- Node.js 18+
 
 ### Installation
 
-1. **Install Dependencies**
-   ```bash
-   npm install
-   ```
+```bash
+# 1. Install dependencies
+npm install
 
-2. **Start Development Server**
-   ```bash
-   npm run dev
-   ```
+# 2. Start development server
+npm run dev
 
-3. **Open Your Browser**
-   Navigate to: **http://localhost:3000**
+# 3. Open browser
+# → http://localhost:3000
+```
 
-## 🎨 Pages & Features
+### Test Credentials
 
-### Home Page (`/`)
-- Hero section with PredictiveArcCanvas background
-- Feature showcase with animated cards
-- Call-to-action sections
+| Role | Email | Password |
+|------|-------|----------|
+| Admin | `admin@hospital.com` | any |
+| Patient | `patient@email.com` | any |
 
-### Login Page (`/login`)
-- Beautiful glassmorphism login form
-- Role-based authentication
-- Test credentials:
-  - **Admin**: admin@hospital.com (any password)
-  - **Patient**: patient@email.com (any password)
+---
 
-### Patient Dashboard (`/patient`)
-- Upload medical images
-- AI-powered analysis simulation
-- Recent activity tracking
-- AI chatbot assistant
-- Profile overview
+## 🧠 AI/ML Engine
 
-### Admin Dashboard (`/admin`)
-- System statistics
-- Patient management table
-- System health monitoring
-- Recent alerts
-- Quick actions panel
+### Isolation Forest (Unsupervised Learning)
 
-## 🎭 Design Elements
+The ML engine is implemented **from scratch in TypeScript** — no Python, no external ML library.
 
-### 3D Effects
-- **Custom Cursor**: Animated dot and ring that follows mouse movement
-- **Hover Animations**: Cards lift and glow on hover
-- **Smooth Transitions**: Framer Motion animations throughout
+**Architecture:**
+- **Algorithm**: Isolation Forest (anomaly detection)
+- **Trees**: 120 isolation trees
+- **Features (8-dimensional)**:
+  1. `densityInhomogeneity` — tissue density variance
+  2. `edgeAsymmetry` — boundary irregularity
+  3. `contrastRatio` — attenuation difference
+  4. `cellularityScore` — cellular density estimate
+  5. `volumeCm3` — lesion/region volume
+  6. `opacityIndex` — opacity level (0–1)
+  7. `patientAge` — normalized age factor
+  8. `scanFrequency` — scan count per year
 
-### Color Scheme
-- Primary: Violet/Purple gradient (#a855f7 to #9333ea)
-- Secondary: Blue/Cyan gradient
-- Background: Dark gradient (10, 10, 30) to (20, 10, 40)
-- Accent: Glowing violet effects
+**Training**: 180 synthetic clinical cases (120 normal, 60 anomalous)  
+**Output**: Anomaly score (0–1), risk level, per-feature σ deviation
 
-### Animations
-- `glow`: Pulsing glow effect for buttons
-- `float`: Gentle floating animation
-- `shimmer`: Moving shine effect
-- `scan`: Medical scan line animation
+### Medicine Suggestion Engine
 
-## 🛠️ Tech Stack
+Maps detected anomaly pattern + modality hint → clinical drug protocols:
 
+| Condition | Example Medicines |
+|-----------|------------------|
+| Pneumonia Infiltrate | Amoxicillin-Clavulanate, Azithromycin, Oseltamivir |
+| Pulmonary Mass | Carboplatin, Pemetrexed, Pembrolizumab |
+| Brain Tumor | Temozolomide, Bevacizumab, Dexamethasone |
+| Cardiac Anomaly | Lisinopril, Metoprolol, Furosemide |
+| Kidney Pathology | Tacrolimus, Mycophenolate, Prednisone |
+| General Anomaly | Methylprednisolone, Gabapentin, Pantoprazole |
+
+---
+
+## 🗺️ Pages & Routes
+
+| Route | Page | Description |
+|-------|------|-------------|
+| `/` | Home | Hero + feature showcase |
+| `/login` | Login | Role-based auth |
+| `/patient` | Patient Dashboard | Image upload + ML analysis |
+| `/admin` | Admin Dashboard | System monitoring + patient management |
+
+### API Routes
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/auth/login` | POST | Authenticate user |
+| `/api/analyze` | POST | Run Isolation Forest ML on patient data |
+| `/api/patients` | GET/POST | Patient records CRUD |
+
+---
+
+## 🏗️ Tech Stack
+
+### Frontend
 - **Framework**: Next.js 14 (App Router)
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS
+- **Language**: TypeScript / TSX
+- **Styling**: Tailwind CSS + custom animations
 - **Animations**: Framer Motion
-- **3D Effects**: Custom Canvas 2D renderer (PredictiveArcCanvas)
+- **Charts**: Chart.js
 - **Icons**: Lucide React
+
+### Backend
+- **Runtime**: Next.js API Routes (Node.js serverless)
+- **Language**: TypeScript
+
+### AI/ML
+- **Algorithm**: Isolation Forest (written from scratch in TypeScript)
+- **Location**: [`lib/ml/isolationForest.ts`](./lib/ml/isolationForest.ts)
+- **No external ML library required**
+
+### Database
+- **Type**: In-Memory store (JavaScript array)
+- **Pre-seeded**: 5 clinical patient records
+
+### 3D Background
+- **Engine**: Canvas 2D + WebGL (Three.js r128)
+- **Component**: `PredictiveArcCanvas` (violet animated arc)
+- **Config**: `hue=-113, saturation=1.44, brightness=1.37`
+
+---
 
 ## 📁 Project Structure
 
 ```
 ├── app/
-│   ├── page.tsx              # Home page
-│   ├── login/page.tsx        # Login page
-│   ├── patient/page.tsx      # Patient dashboard
-│   ├── admin/page.tsx        # Admin dashboard
-│   ├── layout.tsx            # Root layout
-│   └── globals.css           # Global styles
+│   ├── page.tsx                    # Home page
+│   ├── login/page.tsx              # Login page
+│   ├── patient/page.tsx            # Patient dashboard (ML powered)
+│   ├── admin/page.tsx              # Admin dashboard
+│   ├── layout.tsx                  # Root layout
+│   ├── globals.css                 # Global styles
+│   └── api/
+│       ├── auth/login/route.ts     # Auth endpoint
+│       ├── analyze/route.ts        # ML Isolation Forest endpoint
+│       └── patients/route.ts       # Patient data CRUD
 ├── components/
 │   ├── three-ui/
-│   │   ├── PredictiveArcCanvas.tsx  # ThreeUI component
-│   │   └── threeui.css              # ThreeUI styles
-│   ├── CursorEffect.tsx      # Custom cursor component
-│   └── GlowButton.tsx        # Glowing button component
+│   │   ├── PredictiveArcCanvas.tsx # 3D background component
+│   │   ├── predictiveArcRenderer.ts # WebGL renderer
+│   │   └── threeui.css
+│   ├── MedicalAnalysisStudio.tsx   # Image upload + analysis UI
+│   ├── AnalyticsCharts.tsx         # Charts dashboard
+│   ├── AIChatbot.tsx               # Chatbot interface
+│   ├── AIVoiceAssistant.tsx        # Voice assistant UI
+│   ├── GlowButton.tsx              # Animated button
+│   └── CursorEffect.tsx            # 3D cursor
+├── lib/
+│   └── ml/
+│       └── isolationForest.ts      # Isolation Forest from scratch
 ├── package.json
 ├── tailwind.config.ts
 └── tsconfig.json
 ```
 
-## 🎯 Key Components
+---
 
-### PredictiveArcCanvas
-The stunning violet animated background implemented from ThreeUI source code. Features:
-- Canvas 2D rendering
-- Wave-based animation system
-- Configurable speed, hue, saturation
-- Dark/light mode support
-- Performance optimized with IntersectionObserver
+## 🎨 Design System
 
-### CursorEffect
-Custom 3D cursor with:
-- Animated dot (8px)
-- Ring that follows cursor (40px)
-- Scale animation on click
-- Mix-blend-mode for visual interest
-
-### GlowButton
-Interactive button with:
-- Multiple variants (primary, secondary, outline)
-- Hover glow effects
-- Smooth animations
-- Size options (sm, md, lg)
-
-## 🔧 Customization
-
-### Modify Colors
-Edit `tailwind.config.ts` to change the color scheme:
-```typescript
-colors: {
-  primary: { ... },
-  violet: { ... }
-}
-```
-
-### Adjust Animations
-Edit `app/globals.css` for animation tweaks:
-```css
-@keyframes glow { ... }
-@keyframes float { ... }
-```
-
-### Configure PredictiveArc
-Modify the component props:
-```tsx
-<PredictiveArcCanvas
-  mode="dark"
-  speed={1.0}
-  hue={0}
-  saturation={1.0}
-  brightness={1.0}
-/>
-```
-
-## 🚧 Future Enhancements
-
-- [ ] Real AI model integration
-- [ ] Backend API with database
-- [ ] Real-time WebSocket chatbot
-- [ ] DICOM image support
-- [ ] Report generation
-- [ ] Multi-language support
-- [ ] Email notifications
-- [ ] Advanced analytics
-
-## 📝 License
-
-This project is created for demonstration purposes.
-
-## 🤝 Contributing
-
-Feel free to submit issues and enhancement requests!
+- **Primary Color**: Violet/Purple `#a855f7 → #9333ea`
+- **Background**: Dark gradient `rgb(10,10,30) → rgb(20,10,40)`
+- **Typography**: Inter (Google Fonts)
+- **Effects**: Glassmorphism, glow blur, shimmer
 
 ---
 
-Built with ❤️ using Next.js, TypeScript, and ThreeUI
+## 📝 License
 
+Created for **National Level Hackathon** — HackNex.
+
+---
+
+Built with ❤️ using **Next.js · TypeScript · Isolation Forest · Three.js**
