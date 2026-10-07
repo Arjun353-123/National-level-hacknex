@@ -170,6 +170,149 @@ export default function PatientDashboard() {
             {/* ── Main Column ─────────────────────────────────────────────── */}
             <div className="lg:col-span-2 space-y-6">
 
+              {/* ── Disease Medicine Reference Panel ──────────────────────── */}
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="medical-card p-8 rounded-2xl border border-purple-500/30">
+                <div className="flex items-center gap-3 mb-6">
+                  <Pill className="w-6 h-6 text-violet-400" />
+                  <h2 className="text-2xl font-bold text-violet-200">Disease Medicine Reference</h2>
+                  <span className="ml-auto text-xs font-mono text-emerald-400 bg-emerald-900/20 px-2 py-1 rounded border border-emerald-500/30">
+                    Clinical Protocols
+                  </span>
+                </div>
+
+                <div className="space-y-4">
+                  {[
+                    {
+                      condition: "Pneumonia / Lung Infection",
+                      icon: "🫁",
+                      color: "from-cyan-900/40 to-blue-900/30",
+                      border: "border-cyan-500/30",
+                      badge: "bg-cyan-900/50 text-cyan-300 border-cyan-500/40",
+                      symptoms: ["Persistent cough with phlegm", "High fever (38°C+)", "Shortness of breath", "Chest pain on breathing"],
+                      medicines: [
+                        { name: "Amoxicillin-Clavulanate", dosage: "875/125 mg twice daily × 7 days", class: "Antibiotic" },
+                        { name: "Azithromycin", dosage: "500 mg once daily × 5 days", class: "Macrolide" },
+                        { name: "Paracetamol", dosage: "650 mg every 6 hrs (max 4g/day)", class: "Antipyretic" },
+                        { name: "Salbutamol Inhaler", dosage: "2 puffs every 4–6 hrs PRN", class: "Bronchodilator" },
+                      ],
+                      followUp: "Repeat chest X-Ray in 4–6 weeks. Escalate to IV antibiotics if no improvement in 48 hrs.",
+                    },
+                    {
+                      condition: "Brain Tumor / Intracranial Mass",
+                      icon: "🧠",
+                      color: "from-purple-900/40 to-violet-900/30",
+                      border: "border-purple-500/30",
+                      badge: "bg-purple-900/50 text-purple-300 border-purple-500/40",
+                      symptoms: ["Severe persistent headache", "Nausea & vomiting", "Vision or speech changes", "Seizures or confusion"],
+                      medicines: [
+                        { name: "Dexamethasone", dosage: "10 mg IV loading, then 4 mg every 6 hrs", class: "Corticosteroid" },
+                        { name: "Mannitol 20%", dosage: "0.5–1 g/kg IV over 20–30 min (ICP control)", class: "Osmotic Diuretic" },
+                        { name: "Levetiracetam (Keppra)", dosage: "500 mg orally/IV twice daily", class: "Antiepileptic" },
+                        { name: "Omeprazole", dosage: "40 mg orally once daily (GI protection)", class: "PPI" },
+                      ],
+                      followUp: "Urgent neurosurgical consultation. Contrast-enhanced MRI in 48–72 hrs. Consider stereotactic biopsy.",
+                    },
+                    {
+                      condition: "Cardiac Disease / Pleural Effusion",
+                      icon: "❤️",
+                      color: "from-rose-900/40 to-red-900/30",
+                      border: "border-rose-500/30",
+                      badge: "bg-rose-900/50 text-rose-300 border-rose-500/40",
+                      symptoms: ["Shortness of breath lying flat", "Leg swelling (edema)", "Chest pressure or tightness", "Rapid / irregular heartbeat"],
+                      medicines: [
+                        { name: "Furosemide", dosage: "40 mg orally once daily (diuresis)", class: "Loop Diuretic" },
+                        { name: "Spironolactone", dosage: "25 mg orally once daily", class: "K-sparing Diuretic" },
+                        { name: "Lisinopril", dosage: "5 mg orally once daily (titrate up)", class: "ACE Inhibitor" },
+                        { name: "Bisoprolol", dosage: "2.5 mg orally once daily (titrate)", class: "β-blocker" },
+                      ],
+                      followUp: "Cardiology referral urgently. Echocardiogram + BNP levels. Thoracentesis if effusion causes respiratory compromise.",
+                    },
+                    {
+                      condition: "Vertebral / Spinal Compression",
+                      icon: "🦴",
+                      color: "from-amber-900/40 to-yellow-900/30",
+                      border: "border-amber-500/30",
+                      badge: "bg-amber-900/50 text-amber-300 border-amber-500/40",
+                      symptoms: ["Lower back pain radiating to legs", "Numbness or tingling", "Reduced mobility", "Pain worse with movement"],
+                      medicines: [
+                        { name: "Ibuprofen", dosage: "600 mg three times daily with food", class: "NSAID" },
+                        { name: "Tramadol", dosage: "50–100 mg every 4–6 hrs PRN", class: "Opioid Analgesic" },
+                        { name: "Methocarbamol", dosage: "750 mg four times daily", class: "Muscle Relaxant" },
+                        { name: "Calcium + Vitamin D3", dosage: "1000 mg Ca / 800 IU D3 daily", class: "Supplement" },
+                      ],
+                      followUp: "Orthopaedic review in 2 weeks. Consider kyphoplasty if pain persists > 6 weeks. Annual DEXA scan.",
+                    },
+                    {
+                      condition: "Normal Baseline — Preventive Care",
+                      icon: "✅",
+                      color: "from-emerald-900/40 to-teal-900/30",
+                      border: "border-emerald-500/30",
+                      badge: "bg-emerald-900/50 text-emerald-300 border-emerald-500/40",
+                      symptoms: ["No acute symptoms", "Routine screening recommended", "Preventive supplement support", "General wellness maintenance"],
+                      medicines: [
+                        { name: "Multivitamin + Minerals", dosage: "1 tablet once daily", class: "Preventive Supplement" },
+                        { name: "Omega-3 Fatty Acids", dosage: "1000 mg twice daily", class: "Cardioprotective" },
+                        { name: "Vitamin D3", dosage: "1000 IU daily", class: "Bone Health" },
+                        { name: "Magnesium Glycinate", dosage: "400 mg at bedtime", class: "Mineral Supplement" },
+                      ],
+                      followUp: "Annual routine check-up with primary care physician. No immediate medical intervention required.",
+                    },
+                  ].map((disease, idx) => (
+                    <motion.div
+                      key={idx}
+                      initial={{ opacity: 0, y: 16 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: idx * 0.08 }}
+                      className={`rounded-2xl border bg-gradient-to-br ${disease.color} ${disease.border} overflow-hidden`}
+                    >
+                      {/* Disease Header */}
+                      <div className="p-4 pb-3 flex items-center gap-3">
+                        <span className="text-2xl">{disease.icon}</span>
+                        <h3 className="text-base font-bold text-slate-100">{disease.condition}</h3>
+                      </div>
+
+                      <div className="px-4 pb-4 grid sm:grid-cols-2 gap-4">
+                        {/* Symptoms */}
+                        <div>
+                          <p className="text-[10px] uppercase tracking-widest text-slate-400 font-bold mb-2">Symptoms</p>
+                          <ul className="space-y-1">
+                            {disease.symptoms.map((s, i) => (
+                              <li key={i} className="flex items-start gap-1.5 text-xs text-slate-300">
+                                <span className="text-violet-400 mt-0.5 flex-shrink-0">▸</span>{s}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+
+                        {/* Medicines */}
+                        <div>
+                          <p className="text-[10px] uppercase tracking-widest text-slate-400 font-bold mb-2">Prescribed Medicines</p>
+                          <div className="space-y-1.5">
+                            {disease.medicines.map((med, i) => (
+                              <div key={i} className="flex items-start justify-between gap-2 p-2 rounded-lg bg-slate-900/50 border border-white/5">
+                                <div className="flex-1 min-w-0">
+                                  <p className="text-xs font-bold text-violet-200 truncate">{med.name}</p>
+                                  <p className="text-[10px] text-slate-400 font-mono leading-tight">{med.dosage}</p>
+                                </div>
+                                <span className={`flex-shrink-0 text-[9px] font-bold px-1.5 py-0.5 rounded border ${disease.badge}`}>
+                                  {med.class}
+                                </span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Follow-up */}
+                      <div className="mx-4 mb-4 p-2.5 rounded-xl bg-slate-900/40 border border-white/5">
+                        <span className="text-[9px] uppercase tracking-wider font-bold text-slate-400">Follow-Up: </span>
+                        <span className="text-[10px] text-slate-300">{disease.followUp}</span>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+
               {/* Upload Section */}
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="medical-card p-8 rounded-2xl">
                 <h2 className="text-2xl font-bold mb-6 flex items-center gap-3 text-violet-200">
@@ -257,12 +400,7 @@ export default function PatientDashboard() {
                             ))}
                           </div>
 
-                          <div className="mt-2 p-3 rounded-xl bg-slate-800/50 border border-purple-500/20 text-xs text-slate-400">
-                            <span className="font-mono font-bold text-violet-300">[ML-IF] </span>
-                            Trained on {mlResult.ml.trainingStats.totalSamples} clinical samples
-                            ({mlResult.ml.trainingStats.normalCount} normal / {mlResult.ml.trainingStats.anomalousCount} anomalous) ·
-                            mean score: {mlResult.ml.trainingStats.meanAnomalyScore}
-                          </div>
+
                         </div>
                       </div>
 
@@ -384,7 +522,18 @@ export default function PatientDashboard() {
                       initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
                       className="medical-card p-8 rounded-2xl border border-purple-500/30"
                     >
-                      <AnalyticsCharts />
+                      <AnalyticsCharts
+                        latestScanType={
+                          mlResult.imageType.toLowerCase().includes("ct")
+                            ? "CT Scan"
+                            : mlResult.imageType.toLowerCase().includes("mri")
+                            ? "MRI"
+                            : mlResult.imageType.toLowerCase().includes("ultra")
+                            ? "Ultrasound"
+                            : "X-Ray"
+                        }
+                        latestConfidence={mlResult.confidence}
+                      />
                     </motion.div>
                   </>
                 )}

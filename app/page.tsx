@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { PredictiveArcCanvas } from "@/components/three-ui/PredictiveArcCanvas";
 import { GlowButton } from "@/components/GlowButton";
-import { ChatbotButton } from "@/components/ChatbotButton";
+
 import { Brain, Activity, Upload, Shield, Zap, Users } from "lucide-react";
 
 export default function Home() {
@@ -134,7 +134,7 @@ export default function Home() {
       </div>
 
       {/* Floating AI Chatbot */}
-      <ChatbotButton />
+
     </main>
   );
 }
